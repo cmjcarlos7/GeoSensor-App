@@ -1,0 +1,20 @@
+{
+  "name": "geosensorapp",
+  "version": "1.0.0",
+  "title": "GeoSensorApp",
+  "description": "App for sensors monitorizations for rescue and emergency personnel.",
+  "tags": [],
+  "libraries": [
+    {
+      "name": "jquery",
+      "version": "2.1.1"
+    }
+  ],
+  "plugins": [],
+  "index-file": "index.html",
+  "uuid": "0042a1f7-6159-4c50-8e95-0d945ff767a2",
+  "icon": "app-icon.png",
+  "doc-url": "http://evothings.com/2.2/doc/examples/template-basic-app.html",
+  "long-description": "Aplication for TFM",
+  "cordova-id": "com.evothings.examples.templatebasicapp"
+}

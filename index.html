@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>GeoSensor App</title>
+
+    <script>
+      // Redirect console.log to Evothings Workbench.
+      if (window.hyper && window.hyper.log) {
+        console.log = hyper.log;
+      }
+    </script>
+  </head>
+
+	<div class="main-container">
+		<header class="header-container">
+			<div class="img-container">
+				<img src="resources/logo.png" alt="Logo app" />
+			</div>
+
+			<div class="title-container">
+				<h1>GeoSensor App</h1>
+				<p>Sensors monitorizations for rescue and emergency personnel</p>
+			</div>
+		</header>
+		<div class="conection-container">
+			<p>To connect device, press the button:</p>
+			<div class="buttons-">
+				<a class="connect-button" href="#"> Connect </a>
+				<a class="disconnect-button" href="#">Disconnect</a>
+			</div>
+			<div class="status">
+				<span>Status: </span>
+				<span class="status-sensor">Disconnected</span>
+			</div>
+		</div>
+		<div class="sensors">
+			<h2>Sensors:</h2>
+			<div class="geolocation sensor">
+				<div class="sensor-img-container">
+					<img src="resources/geo.png" alt="geolocation img" ></img>
+				</div>
+				<div class="sensor-name">
+						<h4>Location</h4>
+						<p id="lat-value">Lat: 0</p>
+						<p id="lat-value">Lon: 0</p>
+						<div class="geo-status">
+							<span>Status: </span>
+							<span class="status-sensor-geo">Disconnected</span>
+						</div>
+				</div>
+			</div>
+			<div class="luxometer sensor">
+				<div class="sensor-img-container">
+					<img src="resources/lux.png" alt="luxometer img" ></img>
+				</div>
+				<div class="sensor-name">
+						<h4>Luxometer</h4>
+						<p id="lux-value">0 lux</p>
+						<div class="lux-status">
+							<span>Status: </span>
+							<span class="status-sensor-lux">Disconnected</span>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="libs/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

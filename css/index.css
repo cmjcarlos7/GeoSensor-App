@@ -1,0 +1,79 @@
+/*** General ***/
+body,
+h1,
+p,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.div-container {
+  padding: 0;
+  margin: 0;
+}
+/*** Header ***/
+.header-container {
+  background-color: #1b1f23;
+  height: 96px;
+  color: #d8d8d8;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.header-container .img-container {
+  margin: 0 16px;
+}
+/*** Conection Container ***/
+.conection-container p {
+  margin: 16px 16px 24px 16px;
+}
+
+.connect-button {
+  text-transform: capitalize;
+  padding: 1em 1.5em;
+  background-color: #26ad60;
+  border-radius: 0.8em;
+  color: #ffffff;
+  margin: 16px 8px;
+}
+.connect-button:hover {
+  box-shadow: 0 2px 13px 0 rgba(88, 144, 45, 0.49);
+}
+.disconnect-button {
+  text-transform: capitalize;
+  padding: 1em 1.5em;
+  border: black solid 1px;
+  border-radius: 0.8em;
+  color: #1b1f23;
+  margin: 16px 8px;
+}
+.disconnect-button:hover {
+  box-shadow: 0 2px 13px 0 rgba(45, 46, 45, 0.49);
+}
+.status {
+  margin: 24px 16px 16px 16px;
+}
+.sensors {
+  margin: 0px 16px 16px 16px;
+}
+.sensors h2 {
+  margin: 0px 16px 16px 16px;
+}
+
+.sensor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  border: #1b1f23 solid 1px;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+.sensor .sensor-name {
+  margin-left: 16px;
+}
