@@ -19,6 +19,7 @@ var app = {
     // Request to Position
     navigator.geolocation.getCurrentPosition(onSuccess, error, { maximumAge: 3000, timeout: 10000, enableHighAccuracy: true });
     watchMapPosition();
+    initialiseSensorTag();
   }
 };
 
@@ -88,3 +89,70 @@ $(document).ready(function () {
   app.initialize();
 });
 
+function showMessage(text) {
+  $(".status-sensor").text(text);
+}
+function showMessageLuxometer(text) {
+  $(".status-sensor-lux").text(text);
+}
+function showLuxometerValue(text) {
+  $("#lux-value").text(text);
+}
+// Connect Button:
+$(".connect-button").click(function (e) {
+  e.preventDefault();
+  connect();
+});
+
+// Disconnect Button:
+$(".disconnect-button").click(function (e) {
+  e.preventDefault();
+  //hyper.log(device);
+});
+
+/*************** SensorTag *******************/
+function initialiseSensorTag() {
+  // Create SensorTag CC2650 instance.
+  sensortag = evothings.tisensortag.createInstance(
+    evothings.tisensortag.CC2650_BLUETOOTH_SMART)
+
+  // Uncomment to use SensorTag CC2541.
+  //sensortag = evothings.tisensortag.createInstance(
+  //	evothings.tisensortag.CC2541_BLUETOOTH_SMART)
+
+  //
+  // Here sensors are set up.
+  //
+  // If you wish to use only one or a few sensors, just set up
+  // the ones you wish to use.
+  //
+  // First parameter to sensor function is the callback function.
+  // Several of the sensors take a millisecond update interval
+  // as the second parameter.
+  //
+  sensortag
+    .statusCallback(statusHandler)
+    .errorCallback(errorHandler)
+    .keypressCallback(keypressHandler)
+    .temperatureCallback(temperatureHandler, 1000)
+    .humidityCallback(humidityHandler, 1000)
+    .barometerCallback(barometerHandler, 1000)
+    .accelerometerCallback(accelerometerHandler, 1000)
+    .magnetometerCallback(magnetometerHandler, 1000)
+    .gyroscopeCallback(gyroscopeHandler, 1000)
+    .luxometerCallback(luxometerHandler, 1000)
+}
+function connect() {
+  sensortag.connectToNearestDevice()
+}
+
+function statusHandler(status) {
+  // Show device model and firmware version.
+  displayValue('DeviceModel', sensortag.getDeviceModel())
+  displayValue('FirmwareData', sensortag.getFirmwareString())
+
+  // Show which sensors are not supported by the connected SensorTag.
+  if (!sensortag.isLuxometerAvailable()) {
+    document.getElementById('Luxometer').style.display = 'none'
+  }
+}
