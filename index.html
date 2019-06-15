@@ -157,16 +157,26 @@
 	</div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
+<script src="libs/mqttws31-min.js"></script>
 <script src="libs/jquery/jquery.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
 <script src="libs/evothings/evothings.js"></script>
 <script src="libs/evothings/ui/ui.js"></script>
 <script src="libs/evothings/tisensortag/tisensortag.js"></script>
+<script src="app.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 
 <script>
 	// SensorTag object.
 	var sensortag
+
+		// Interval to send data to IBM Platform.
+		var temperatureInterval = 6000;
+	// Timer to send data.
+	var temperatureTimer = null
+
+	var lastLightReading = '0.0';
+	var lastHumidityReading = '0.0';
+	var lastTemperatureReading = '0.0';
 
 	function initialiseSensorTag() {
 		// Create SensorTag CC2650 instance.
@@ -188,6 +198,17 @@
 
 	function connect() {
 		sensortag.connectToNearestDevice()
+		// Clear existing interval timer if any.
+		temperatureTimer && clearInterval(temperatureTimer)
+		// Start the interval timer for uploading data. 
+		temperatureTimer = setInterval(onTemperatureTimer, temperatureInterval)
+	}
+
+	function onTemperatureTimer() {
+		// Save the temperature value to the Bluemix IoT Foundation cloud
+		var evt = JSON.stringify({ambientTemp: lastTemperatureReading, humidity: lastHumidityReading, light: lastLightReading})
+		//send to MQTT publish function
+		app.publish(evt)
 	}
 
 	function disconnect() {
@@ -305,11 +326,13 @@
 
 		// Calculate the humidity temperature (C and F).
 		var tc = values.humidityTemperature
+		lastHumidityReading = tc.toFixed(2)
+		lastTemperatureReading = tc.toFixed(2)
 		//var tf = sensortag.celsiusToFahrenheit(tc)
 
 		// Calculate the relative humidity.
 		var h = values.relativeHumidity
-
+		//lastHumidityReading = h;
 		// Prepare the information to display.
 		stringTemperature = tc.toFixed(2) + '&deg; C ';
 		stringHumidity = h.toFixed(2) + '% RH'
@@ -378,9 +401,10 @@
 
 	function luxometerHandler(data) {
 		var value = sensortag.getLuxometerValue(data);
-
+		lastLightReading = value.toPrecision(5);
 		// Prepare the information to display.
 		string = value.toPrecision(5) + ' lux<br/>';
+		
 		//hyper.log("Nueva: " + value)
 		// Update the value displayed.
 		displayValue('lux-value', string);

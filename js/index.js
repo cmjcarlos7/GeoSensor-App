@@ -1,5 +1,5 @@
 
-var app = {
+var appli = {
   // Application Constructor
   initialize: function () {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -85,6 +85,6 @@ function onWeatherError(error) {
 }
 /****************************** */
 $(document).ready(function () {
-  app.initialize();
+  appli.initialize();
 });
 
