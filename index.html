@@ -25,132 +25,160 @@
 
 		<div class="title-container">
 			<h1>GeoSensor App</h1>
-			<p>Sensors monitorizations for rescue and emergency personnel</p>
+			<p>Sensors monitorizations for rescue and emergency staff</p>
 		</div>
 	</header>
-	<div class="conection-container">
-		<p>To connect device, press the button:</p>
-		<div class="buttons-">
-			<a class="connect-button" href="#"> Connect </a>
-			<a class="disconnect-button" href="#">Disconnect</a>
+	<div class="first-view">
+		<h2>Conection Data:</h2>
+		<div class="container-data">
+			<h4>Select your Device:</h4>
+			<div class="sensor-select">
+				<select>
+					<option value="0">SensorTag CC2650</option>
+					<option value="1">SensorTag CC2641</option>
+				</select>
+			</div>
+			<div class="serial">
+				<h4>Serial Number:</h4>
+				<input name="serialNumber" type="text" placeholder="Device Serial Number ">
+			</div>
+			<div class="platform">
+				<h4>Platform ID: </h4>
+				<input name="orgID" type="text" placeholder="IBM Platform OrgID ">
+			</div>
+			<div class="api-data">
+				<h4>Api Data</h4>
+					<input name="apikey" type="text" placeholder="Api Key IBM platform ">
+					<input name="token" type="text" placeholder="Api Key Authentication">
+			</div>
 		</div>
-		<div class="status">
-			<span>Status: </span>
-			<span class="status-sensor">Disconnected</span>
-		</div>
-		<div class="status">
-			<span>Log: </span>
-			<span class="error-sensor"> - </span>
-		</div>
+		<a class="cloud-button" href="#"> Cloud Connect </a>
 	</div>
-	<div class="sensors">
-		<h2>Sensors:</h2>
-		<div class="geolocation sensor">
-			<div class="sensor-img-container">
-				<img src="resources/geo.png" alt="geolocation img"></img>
+	<div class="second-view">
+		<div class="conection-container">
+			<p>To connect device, press the button:</p>
+			<div class="buttons-">
+				<a class="connect-button" href="#"> Connect </a>
+				<a class="disconnect-button" href="#">Disconnect</a>
 			</div>
-			<div class="sensor-name">
-				<h4>Location</h4>
-				<p id="lat-value">Lat: 0</p>
-				<p id="lon-value">Lon: 0</p>
-				<div class="geo-status">
-					<span>Status: </span>
-					<span class="status-sensor-geo">Disconnected</span>
-				</div>
+			<div class="status">
+				<span>Status: </span>
+				<span class="status-sensor">Disconnected</span>
 			</div>
-		</div>
-		<div class="luxometer sensor">
-			<div class="sensor-img-container">
-				<img src="resources/lux.png" alt="luxometer img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>Luxometer</h4>
-				<p id="lux-value">0 lux</p>
-				<div class="lux-status">
-					<span>Status: </span>
-					<span id="status-sensor-lux">Disconnected</span>
-				</div>
+			<div class="status">
+				<span>Log: </span>
+				<span class="error-sensor"> - </span>
 			</div>
 		</div>
-		<div class="button sensor">
-			<div class="sensor-img-container">
-				<img src="resources/button.png" alt="button img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>button</h4>
-				<p id="button-value">No pressed</p>
-				<div class="button-status">
-					<span>Status: </span>
-					<span class="status-sensor-button"> - </span>
+		<div class="sensors">
+			<h2>Sensors:</h2>
+			<div class="geolocation sensor">
+				<div class="sensor-img-container">
+					<img src="resources/geo.png" alt="geolocation img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Location</h4>
+					<p id="lat-value">Lat: 0</p>
+					<p id="lon-value">Lon: 0</p>
+					<div class="geo-status">
+						<span>Status: </span>
+						<span class="status-sensor-geo">Disconnected</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="temperature sensor">
-			<div class="sensor-img-container">
-				<img src="resources/temperature.png" alt="temperature img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>Temperature</h4>
-				<p id="temperature-value">0 ºC</p>
-				<div class="temperature-status">
-					<span>Status: </span>
-					<span id="status-sensor-temperature">Disconnected</span>
+			<div class="luxometer sensor">
+				<div class="sensor-img-container">
+					<img src="resources/lux.png" alt="luxometer img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Luxometer</h4>
+					<p id="lux-value">0 lux</p>
+					<div class="lux-status">
+						<span>Status: </span>
+						<span id="status-sensor-lux">Disconnected</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="humidity sensor">
-			<div class="sensor-img-container">
-				<img src="resources/humidity.png" alt="humidity img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>Humidity</h4>
-				<p id="humidity-value">0 %RH</p>
-				<div class="humidity-status">
-					<span>Status: </span>
-					<span id="status-sensor-humidity">Disconnected</span>
+			<div class="button sensor">
+				<div class="sensor-img-container">
+					<img src="resources/button.png" alt="button img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>button</h4>
+					<p id="button-value">No pressed</p>
+					<div class="button-status">
+						<span>Status: </span>
+						<span class="status-sensor-button"> - </span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="barometer sensor">
-			<div class="sensor-img-container">
-				<img src="resources/barometer.png" alt="barometer img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>barometer</h4>
-				<p id="barometer-value">0 mbar</p>
-				<div class="barometer-status">
-					<span>Status: </span>
-					<span id="status-sensor-barometer">Disconnected</span>
+			<div class="temperature sensor">
+				<div class="sensor-img-container">
+					<img src="resources/temperature.png" alt="temperature img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Temperature</h4>
+					<p id="temperature-value">0 ºC</p>
+					<div class="temperature-status">
+						<span>Status: </span>
+						<span id="status-sensor-temperature">Disconnected</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="gyro sensor">
-			<div class="sensor-img-container">
-				<img src="resources/gyro.png" alt="gyro img"></img>
-			</div>
-			<div class="sensor-name">
-				<h4>Gyroscope</h4>
-				<p id="gyro-valuex">X: 0</p>
-				<p id="gyro-valuey">Y: 0</p>
-				<p id="gyro-valuez">Z: 0</p>
-				<div class="gyro-status">
-					<span>Status: </span>
-					<span id="status-sensor-gyro">Disconnected</span>
+			<div class="humidity sensor">
+				<div class="sensor-img-container">
+					<img src="resources/humidity.png" alt="humidity img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Humidity</h4>
+					<p id="humidity-value">0 %RH</p>
+					<div class="humidity-status">
+						<span>Status: </span>
+						<span id="status-sensor-humidity">Disconnected</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="ace sensor">
-			<div class="sensor-img-container">
-				<img src="resources/ace.png" alt="acelerometer img"></img>
+			<div class="barometer sensor">
+				<div class="sensor-img-container">
+					<img src="resources/barometer.png" alt="barometer img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>barometer</h4>
+					<p id="barometer-value">0 mbar</p>
+					<div class="barometer-status">
+						<span>Status: </span>
+						<span id="status-sensor-barometer">Disconnected</span>
+					</div>
+				</div>
 			</div>
-			<div class="sensor-name">
-				<h4>Acelerometer</h4>
-				<p id="ace-valuex">X: 0 g</p>
-				<p id="ace-valuey">Y: 0 g</p>
-				<p id="ace-valuez">Z: 0 g</p>
-				<div class="ace-status">
-					<span>Status: </span>
-					<span id="status-sensor-ace">Disconnected</span>
+			<div class="gyro sensor">
+				<div class="sensor-img-container">
+					<img src="resources/gyro.png" alt="gyro img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Gyroscope</h4>
+					<p id="gyro-valuex">X: 0</p>
+					<p id="gyro-valuey">Y: 0</p>
+					<p id="gyro-valuez">Z: 0</p>
+					<div class="gyro-status">
+						<span>Status: </span>
+						<span id="status-sensor-gyro">Disconnected</span>
+					</div>
+				</div>
+			</div>
+			<div class="ace sensor">
+				<div class="sensor-img-container">
+					<img src="resources/ace.png" alt="acelerometer img"></img>
+				</div>
+				<div class="sensor-name">
+					<h4>Acelerometer</h4>
+					<p id="ace-valuex">X: 0 g</p>
+					<p id="ace-valuey">Y: 0 g</p>
+					<p id="ace-valuez">Z: 0 g</p>
+					<div class="ace-status">
+						<span>Status: </span>
+						<span id="status-sensor-ace">Disconnected</span>
+					</div>
 				</div>
 			</div>
 		</div>
