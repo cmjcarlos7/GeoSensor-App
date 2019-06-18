@@ -51,6 +51,10 @@
 					<input name="apikey" type="text" placeholder="Api Key IBM platform ">
 					<input name="token" type="text" placeholder="Api Key Authentication">
 			</div>
+			<div class="time">
+				<h4>Time in ms to Send Data:</h4>
+					<input id="timeSend" name="time" type="number" placeholder="2000 milliseconds by default ">
+			</div>
 		</div>
 		<a class="cloud-button" href="#"> Cloud Connect </a>
 	</div>
@@ -198,7 +202,7 @@
 	var sensortag
 
 		// Interval to send data to IBM Platform.
-		var temperatureInterval = 1000;
+		var temperatureInterval = 2000;
 	// Timer to send data.
 	var temperatureTimer = null
 
@@ -520,11 +524,18 @@
 		disconnect();
 		resetSensorDisplayValues();
 	});
-	// Disconnect Button:
+	// Cloud Connect Button:
 	$(".cloud-button").click(function (e) {
 		e.preventDefault();
 		$(".first-view").hide();
 		$(".second-view").show();
+		// Obtain time and set it.
+		var time = $('#timeSend').val();
+		if (time != '')
+		{
+			temperatureInterval = time;
+			hyper.log(time+"  "+temperatureInterval)
+		}
 	});
 
 
