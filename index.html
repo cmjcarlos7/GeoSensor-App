@@ -198,13 +198,23 @@
 	var sensortag
 
 		// Interval to send data to IBM Platform.
-		var temperatureInterval = 6000;
+		var temperatureInterval = 1000;
 	// Timer to send data.
 	var temperatureTimer = null
 
 	var lastLightReading = '0.0';
 	var lastHumidityReading = '0.0';
 	var lastTemperatureReading = '0.0';
+	var lastLatitude = '0.0';
+	var lastLongitude = '0.0';
+	var lastButton = '0.0';
+	var lastPressure = '0.0';
+	var gyroX = '0.0';
+	var gyroY = '0.0';
+	var gyroZ = '0.0';
+	var aceX = '0.0';
+	var aceY = '0.0';
+	var aceZ = '0.0';
 
 	function initialiseSensorTag() {
 		// Create SensorTag CC2650 instance.
@@ -234,7 +244,21 @@
 
 	function onTemperatureTimer() {
 		// Save the temperature value to the Bluemix IoT Foundation cloud
-		var evt = JSON.stringify({ambientTemp: lastTemperatureReading, humidity: lastHumidityReading, light: lastLightReading})
+		var evt = JSON.stringify({
+			ambientTemp: lastTemperatureReading,
+			humidity: lastHumidityReading,
+			light: lastLightReading,
+			button: lastButton,
+			pressure: lastPressure,
+			Latitude: Latitude*10000000,
+			Longitude: Longitude*10000000,
+			gyroX: gyroX*1000000,
+			gyroY: gyroY*100000,
+			gyroZ: gyroZ*100000,
+			aceX: aceX*100000,
+			aceY: aceY*100000,
+			aceZ: aceZ*100000
+		})
 		//send to MQTT publish function
 		app.publish(evt)
 	}
@@ -278,24 +302,28 @@
 				// no pressed
 				$('#button-value').text("No pressed");
 				$(".button").css("background-color", "white");
+				lastButton = 0;
 				break;
 			case 1:
 				// Finished
 				$('#button-value').text("Pressed");
 				$(".button").css("background-color", "green");
 				$('.status-sensor-button').text("Finished");
+				lastButton = 1;
 				break;
 			case 2:
 				// Found
 				$('#button-value').text("Pressed");
 				$(".button").css("background-color", "green");
 				$('.status-sensor-button').text("Found");
+				lastButton = 2;
 				break;
 			case 3:
 				// Emergency
 				$('#button-value').text("Pressed");
 				$(".button").css("background-color", "red");
 				$('.status-sensor-button').text("Emergency");
+				lastButton = 3;
 				break;
 		}
 
@@ -332,6 +360,10 @@
 		var x = values.x
 		var y = values.y
 		var z = values.z
+
+		aceX = x.toFixed(5);
+		aceY = y.toFixed(5);
+		aceZ = z.toFixed(5);
 
 		//var model = sensortag.getDeviceModel()
 		//var dataOffset = (model == 2 ? 6 : 0)
@@ -399,6 +431,7 @@
 		// Calculate pressure from raw sensor data.
 		var values = sensortag.getBarometerValues(data);
 		var pressure = values.pressure;
+		lastPressure = pressure.toPrecision(5);
 
 		// Prepare the information to display.
 		string = pressure.toPrecision(5) + ' mbar<br/>';
@@ -414,6 +447,10 @@
 		var x = values.x;
 		var y = values.y;
 		var z = values.z;
+
+		gyroX = x.toFixed(5);
+		gyroY = y.toFixed(5);
+		gyroZ = z.toFixed(5);
 
 		// Prepare the information to display.
 		stringx = (x >= 0 ? '+' : '') + x.toFixed(5);
@@ -483,6 +520,13 @@
 		disconnect();
 		resetSensorDisplayValues();
 	});
+	// Disconnect Button:
+	$(".cloud-button").click(function (e) {
+		e.preventDefault();
+		$(".first-view").hide();
+		$(".second-view").show();
+	});
+
 
 	document.addEventListener(
 		'deviceready',
