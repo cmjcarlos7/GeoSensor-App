@@ -77,3 +77,63 @@ a {
 .sensor .sensor-name {
   margin-left: 16px;
 }
+
+.second-view{
+  display: none;
+}
+
+
+/****** First View ******/
+
+.first-view{
+  margin: 0 8px 0 8px;
+}
+.first-view h2{
+  margin-left: 24px;
+}
+.container-data{
+  border: #1b1f23 solid 1px;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 8px 0 32px 0;
+  padding-right: 16px; 
+}
+.first-view h4, .first-view .sensor-select{
+  margin-left: 8px;
+  margin-top: 16px;
+}
+.first-view input{
+  margin-left: 8px;
+  margin-top: 8px;
+}
+.cloud-button {
+  width: 80%;
+  margin-top: 64px;
+  text-transform: capitalize;
+  padding: 1em calc(50vw - 72px);
+  background-color: #26ad60;
+  border-radius: 0.8em;
+  color: #ffffff;
+  margin: 42px 8px 16px 8px;
+}
+.cloud-button:hover {
+  box-shadow: 0 2px 13px 0 rgba(88, 144, 45, 0.49);
+}
+
+.first-view input{
+  width: 100%;
+  margin-right:40px; 
+  border: none;
+  border-bottom: 2px solid #98CCFD;
+}
+.first-view input[type=text]:focus {
+  border: 2px solid #4788C7;
+}
+.sensor-select select{
+  position: relative;
+  width: 100%;
+  margin-right:32px; 
+  border: 2px solid #98CCFD;
+  background: transparent;
+  border-radius: 16px;
+}
